@@ -469,6 +469,16 @@ setInterval(createSnowfall, 2); // Creates one square every 50ms
         unmuteButton.style.display = 'none'; // Hide the button after unmuting
     });
 </script>
+    <script>
+    const unmuteButton = document.getElementById('unmuteButton');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    unmuteButton.addEventListener('click', () => {
+        backgroundMusic.muted = false; // Unmute the audio
+        backgroundMusic.play(); // Ensure it starts playing
+        unmuteButton.style.display = 'none'; // Hide the button after unmuting
+    });
+</script>
     
 </body>
 </html>

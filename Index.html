@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #f3c7f7, #9c4d95); /* Soft gradient with candy-like background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            background-size: cover;
+        }
+
+        /* Candy Design Around Page */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #f8a7d2, #ffb0d4, #ffb0d4, #f8a7d2);
+            background-size: 150% 150%;
+            z-index: -1;
+            animation: candyGlow 5s linear infinite;
+        }
+
+        @keyframes candyGlow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Hearts in Corners - Pumping effect */
+        .corner-heart {
+            position: absolute;
+            font-size: 1.8em;
+            opacity: 0.6;
+            animation: pump 2s infinite alternate ease-in-out;
+        }
+
+        .top-left {
+            top: 10px;
+            left: 10px;
+        }
+
+        .top-right {
+            top: 10px;
+            right: 10px;
+        }
+
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* Pump Animation */
+        @keyframes pump {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Header Styles */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            color: #fce4ec;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 💝 Emoji after "For My Love" */
+        .heart-after {
+            font-size: 1em; /* Larger size of 💝 emoji */
+            color: #ff3b3f;
+            display: inline-block;
+            margin-left: 10px;
+            animation: pumpHeart 2s infinite alternate;
+        }
+
+        /* Pumping Heart Animation */
+        @keyframes pumpHeart {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Button Styles (Previous Design) */
+.heart-button {
+    background-color: #ff4c9e; /* Pink background */
+    color: white;
+    border: none;
+    padding: 15px 25px; /* Dramatically increased padding for a huge button */
+    font-size: 1.5em; /* Very large font size */
+    font-family: 'Dancing Script', cursive;
+    cursor: pointer;
+    border-radius: 50px; /* Smooth, rounded corners for the large button */
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3); /* Bigger shadow for proportion */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.heart-button:before {
+    content: "";
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    background-size: 600%;
+    z-index: -1;
+    filter: blur(12px); /* Increased blur for larger size */
+    width: calc(100% + 12px); /* Larger glow area */
+    height: calc(100% + 12px); /* Larger glow area */
+    animation: glowing-button-85 20s linear infinite;
+    border-radius: 50px; /* Match the button radius */
+}
+
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 600% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.heart-button:active {
+    transform: scale(0.9); /* Slightly reduced scale for better click effect */
+}
+
+.heart-button:focus {
+    outline: none;
+    box-shadow: 0 0 50px 20px rgba(255, 105, 180, 0.8); /* Bigger glow for focus */
+}
+
+        /* Letter Container Styling */
+        .letter-container {
+            display: none;
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 750px;
+            margin: 20px auto;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            font-size: 1.3em;
+            color: #4a4a4a;
+            text-align: left;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInLetter 5s ease-in-out forwards; /* Slow fade-in effect */
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeInLetter {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Close Button with enhanced styling */
+        .close-button {
+            background: #f16c96;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .close-button:hover {
+            background: #ec5782;
+            transform: scale(1.1);
+        }
+
+        /* Instruction at the bottom */
+        .instruction {
+         position: absolute;
+        bottom: 80px; /* Center bottom */
+        left: 50%;    /* Horizontal centering */
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 1.4em; /* Increased size */
+        color: #fce4ec;
+        font-family: 'Dancing Script', cursive;
+        font-weight: bold; /* Make it bold */
+        z-index: 10;
+    }
+        /* Word Slide Animation */
+        .word {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s forwards;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: #ff3b3f;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+/* Falling Squares */
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+.square {
+    position: absolute;
+    top: -10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    animation: fall linear infinite;
+    z-index: 2;
+    border-radius: 2px;
+}
+
+        /* Responsive Design */
+       /* Responsive Design for Tablets and Smaller Devices */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5em; /* Reduce heading size */
+    }
+
+    .heart-button {
+        font-size: 1.5em;
+        padding: 15px 25px; /* Smaller button padding */
+    }
+
+    .letter-container {
+        max-width: 90%; /* Make the letter container fit smaller screens */
+        font-size: 1.1em; /* Slightly smaller text for readability */
+        padding: 20px; /* Reduce padding */
+    }
+
+    .instruction {
+        font-size: 1.1em; /* Reduce instruction text size */
+    }
+
+    .word {
+        font-size: 3em; /* Adjust word size for smaller screens */
+    }
+}
+
+/* Additional Adjustments for Very Small Screens (e.g., iPhones) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5em; /* Further reduce heading size */
+    }
+
+    .heart-button {
+        font-size: 1.5em; /* Adjust button size */
+        padding: 15px 25px;
+    }
+
+    .letter-container {
+        font-size: 1em; /* Smaller font for the letter */
+        max-height: 60vh; /* Restrict height to prevent overflow */
+        overflow-y: auto; /* Allow scrolling */
+    }
+
+    .instruction {
+        font-size: 1.4em; /* Make instruction text smaller */
+        bottom: 80px; /* Move closer to the bottom */
+    }
+
+    .word {
+        font-size: 3em; /* Reduce word size for tiny screens */
+    }
+
+    .corner-heart {
+        font-size: 1.2em; /* Reduce heart size */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Hearts in the Corners -->
+    <div class="corner-heart top-left">💘</div>
+    <div class="corner-heart top-right">❤️</div>
+    <div class="corner-heart bottom-left">💖</div>
+    <div class="corner-heart bottom-right">💗</div>
+
+    <div class="content">
+        <h1>For My Love <span class="heart-after">💝</span></h1>
+        <button class="heart-button" id="openLetterButton">Click to Read My Heartfelt Letter</button>
+        <div id="wordContainer">
+            <!-- Words will be added here -->
+        </div>
+        <div class="letter-container" id="letterContainer">
+            <button class="close-button" id="closeButton">Close</button>
+            <p>My Love 💖 My world 💝</p>
+            <p>As our 8th month to be together approaches, I can’t help but reflect on everything we’ve been through in this short time. This past month has been filled with moments of joy but a lot of fights too. We’ve fought more than I imagined we would, but with each fight, I’ve only become more attached to you. It’s crazy how someone I barely knew a few months ago has now become the most important person in my life. 🥹🤍</p>
+            <p>I never thought I could feel this way, but now, thinking about a life without you feels impossible. Honestly, the thought of losing you is so overwhelming that just imagining it makes my heart ache and brings tears to my eyes, and I mean it. I love you—more than I can put into words. When I say "I love you," I mean YOU and only Y.O.U. Everything about you, everything we’ve shared, every little thing you do. You are my favorite person, my heart, my everything.🌹🥰</p>
+            <p>I know we’re not perfect. There are moments when I feel unsure or distant, but in reality, what’s happening is that I’ve fallen so much deeper in love with you than I ever thought possible. A stranger, someone I didn’t know just a couple of months ago, has become the person I fear losing the most. You’re my world now, and the thought of even losing a piece of you scares me beyond words. Yes, it's true I don't know why, but I feel like I have been attached to you more than ever in the last few days.</p>
+            <p>Thank you for loving me through the good and the bad, for being there even when things get tough. You’ve shown me what real love is, and I am so incredibly grateful. No matter what happens, know that I’ll always be here, fighting for us, because you mean everything to me, and as a wise person once said, love never fails. If you really love me, you believe our dreams will come true one day 💖.</p>
+            <p>I can’t wait for the future we’ll share, for all the memories we still have to make. I love you more than I could ever express, and I’m so thankful to have you by my side 🤗.  Forever yours 🤭</p>
+            <p>Hamid ☺️</p>
+        </div>
+        <div class="instruction" id="instruction">Click 3 times slowly to reveal the letter my Love 😉</div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+let timer = null;
+const wordContainer = document.getElementById('wordContainer');
+const letterContainer = document.getElementById('letterContainer');
+const closeButton = document.getElementById('closeButton');
+const instruction = document.getElementById('instruction');
+const openLetterButton = document.getElementById('openLetterButton');
+const heading = document.querySelector('h1'); // Select the heading element
+
+const words = ["I", "Love", "You 🥰"];
+
+openLetterButton.addEventListener('click', () => {
+    clickCount++;
+
+    // Start the timer on the first click
+    if (clickCount === 1) {
+        timer = setTimeout(() => {
+            clickCount = 0; // Reset click count if 15 seconds pass
+        }, 25000);
+    }
+
+    if (clickCount <= 3) {
+        // Slide in the words one by one
+        const word = document.createElement('div');
+        word.classList.add('word');
+        word.textContent = words[clickCount - 1];
+        wordContainer.appendChild(word);
+    }
+
+    // If clicked 3 times, show the letter, hide heading and button, and hide instruction
+    if (clickCount === 3) {
+        letterContainer.style.display = 'block';
+        openLetterButton.style.display = 'none'; // Hide the button
+        instruction.style.display = 'none'; // Hide the instruction
+        heading.style.display = 'none'; // Hide the heading
+        clearTimeout(timer);
+        clickCount = 0;
+    }
+});
+
+closeButton.addEventListener('click', () => {
+    // Hide the letter and reset the words
+    letterContainer.style.display = 'none';
+    wordContainer.innerHTML = ''; // Remove previous words
+    instruction.style.display = 'block'; // Show the instruction again
+    openLetterButton.style.display = 'block'; // Show the button again
+    heading.style.display = 'block'; // Show the heading again
+    clickCount = 0; // Reset the click count
+});
+
+    </script>
+<script>
+     const body = document.body;
+
+function createSnowfall() {
+    const square = document.createElement('div');
+    square.classList.add('square');
+
+    // Random sizes for variety
+    const size = Math.random() * 5 + 2; // Sizes between 2px and 7px
+    square.style.width = `${size}px`;
+    square.style.height = `${size}px`;
+
+    // Random starting positions and animation duration
+    square.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+    square.style.animationDuration = `${Math.random() * 3 + 3}s`; // Duration between 3s and 6s
+
+    // Append to body and remove after animation ends
+    body.appendChild(square);
+    setTimeout(() => {
+        square.remove();
+    }, 6000); // Max duration
+}
+
+// Trigger snowfall creation immediately when the page loads
+for (let i = 0; i < 50; i++) {
+    createSnowfall();
+}
+
+// Generate additional squares continuously
+setInterval(createSnowfall, 2); // Creates one square every 50ms
+
+</script>
+<audio id="backgroundMusic" autoplay loop>
+    <source src="Piano123.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    // Access the audio element
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    // Set the initial volume to a low level (e.g., 0.2 for 20%)
+    backgroundMusic.volume = 0.2;
+
+    // Optional: Add a play button if you want the user to control the music
+    // const playButton = document.createElement('button');
+    // playButton.textContent = 'Play Background Music';
+    // playButton.style.position = 'absolute';
+    // playButton.style.bottom = '20px';
+    // playButton.style.left = '50%';
+    // playButton.style.transform = 'translateX(-50%)';
+    // playButton.style.padding = '10px 20px';
+    // playButton.style.fontSize = '16px';
+    // document.body.appendChild(playButton);
+
+    // playButton.addEventListener('click', () => {
+    //     if (backgroundMusic.paused) {
+    //         backgroundMusic.play();
+    //         playButton.textContent = 'Pause Background Music';
+    //     } else {
+    //         backgroundMusic.pause();
+    //         playButton.textContent = 'Play Background Music';
+    //     }
+    // });
+</script>
+</body>
+</html>

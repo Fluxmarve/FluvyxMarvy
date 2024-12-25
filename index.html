@@ -320,6 +320,24 @@
         font-size: 1.2em; /* Reduce heart size */
     }
 }
+    #unmuteButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff4c9e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#unmuteButton:hover {
+    background-color: #ec5782;
+}
 
     </style>
 </head>
@@ -434,38 +452,23 @@ for (let i = 0; i < 50; i++) {
 setInterval(createSnowfall, 2); // Creates one square every 50ms
 
 </script>
-<audio id="backgroundMusic" autoplay loop>
+<audio id="backgroundMusic" autoplay loop muted>
     <source src="Piano123.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
+<button id="unmuteButton">Unmute</button>
+
 <script>
-    // Access the audio element
     const backgroundMusic = document.getElementById('backgroundMusic');
+    const unmuteButton = document.getElementById('unmuteButton');
 
-    // Set the initial volume to a low level (e.g., 0.2 for 20%)
-    backgroundMusic.volume = 0.2;
-
-    // Optional: Add a play button if you want the user to control the music
-    // const playButton = document.createElement('button');
-    // playButton.textContent = 'Play Background Music';
-    // playButton.style.position = 'absolute';
-    // playButton.style.bottom = '20px';
-    // playButton.style.left = '50%';
-    // playButton.style.transform = 'translateX(-50%)';
-    // playButton.style.padding = '10px 20px';
-    // playButton.style.fontSize = '16px';
-    // document.body.appendChild(playButton);
-
-    // playButton.addEventListener('click', () => {
-    //     if (backgroundMusic.paused) {
-    //         backgroundMusic.play();
-    //         playButton.textContent = 'Pause Background Music';
-    //     } else {
-    //         backgroundMusic.pause();
-    //         playButton.textContent = 'Play Background Music';
-    //     }
-    // });
+    unmuteButton.addEventListener('click', () => {
+        backgroundMusic.muted = false; // Unmute the audio
+        backgroundMusic.play(); // Ensure it starts playing
+        unmuteButton.style.display = 'none'; // Hide the button after unmuting
+    });
 </script>
+    
 </body>
 </html>
